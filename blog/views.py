@@ -15,6 +15,11 @@ def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     return render(request, 'blog/post_list.html', {'posts':posts})
 
+def post_user(request, pk):
+    author = Post.objects.get(pk=pk).author
+    posts = Post.objects.filter(author_id=author.id).order_by('published_date')
+    return render(request, 'blog/post_user.html', {'posts':posts})
+
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'blog/post_detail.html', {'post' : post})
@@ -37,7 +42,7 @@ def post_new(request):
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     current_user = request.user
-    if post.author.id != current_user.id:
+    if post.author.username != current_user.username:
         return redirect('post_detail', pk=pk)
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)

@@ -7,9 +7,32 @@
                 {{ post.published_date }}
             </div>
         {% endif %}
-        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-edit"></span></a>
-        <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+        <a class="btn btn-default" onclick="check_author()" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-edit"></span></a>
+        <a class="btn btn-default" onclick="check_author2()" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
         <h1>{{ post.title }}</h1>
         <p>{{ post.text|linebreaksbr }}</p>
     </div>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+    function check_author() {
+        if ( "{{ request.user.username }}" != "{{ post.author.username }}"){
+            alert("수정 권한이 없습니다!");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function check_author2(){
+        if("{{  request.user.username }}" != "{{ post.author.username }}"){
+            alert("삭제 권한이 없습니다!");
+            return false;
+        } else{
+            return true;
+        }
+    }
+
+</script>
 {% endblock %}

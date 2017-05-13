@@ -14,8 +14,8 @@
                 <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-pencil"></span></a>
                 <p class="top-menu"> {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
             {% else %}
-                <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
-                <a href="{% url 'create_account' %}" class="top-menu"> register </a>
+                <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock">로그인</span></a>
+                <a href="{% url 'create_account' %}" class="top-menu"> 회원가입 </a>
 
             {% endif %}
             <h1><a href="/">Movie Review Blog</a></h1>
@@ -30,6 +30,9 @@
                 </div>
             </div>
         </div>
+
+    {% block javascript %}
+    {% endblock %}
 
     </body>
 </html>

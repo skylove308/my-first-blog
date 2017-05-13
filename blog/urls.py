@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^post/(?P<pk>[0-9]+)/edit/$', views.post_edit, name='post_edit'),
     url(r'^post/(?P<pk>\d+)/remove/$', views.post_remove, name='post_remove'),
     url(r'^account/new/$', views.create_account, name='create_account'),
+    url(r'^post/user/(?P<pk>[0-9]+)/$', views.post_user, name='post_user'),
 ]
