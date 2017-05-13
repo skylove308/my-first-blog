@@ -3,8 +3,12 @@ from django.utils import timezone
 from .models import Post
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
+from .forms import Create_accountForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib.auth import login
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 def post_list(request):
@@ -43,3 +47,23 @@ def post_edit(request, pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
+
+@login_required
+def post_remove(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.delete()
+    return redirect('post_list')
+
+
+def create_account(request):
+    if request.method == "POST":
+        form = Create_accountForm(request.POST)
+        if form.is_valid():
+            new_user = User.objects.create_user(**form.cleaned_data)
+            new_user.backend = 'django.contrib.auth.backends.ModelBackend'
+            login(request, new_user)
+            return redirect('post_list')
+    
+    else:
+        form = Create_accountForm()
+        return render(request, 'registration/create_account.html', {'form': form})
