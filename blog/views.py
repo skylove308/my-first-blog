@@ -36,6 +36,9 @@ def post_new(request):
 @login_required
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    current_user = request.user
+    if post.author.id != current_user.id:
+        return redirect('post_detail', pk=pk)
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
@@ -51,6 +54,9 @@ def post_edit(request, pk):
 @login_required
 def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    current_user = request.user
+    if post.author.id != current_user.id:
+        return redirect('post_detail', pk=pk)
     post.delete()
     return redirect('post_list')
 
@@ -63,7 +69,7 @@ def create_account(request):
             new_user.backend = 'django.contrib.auth.backends.ModelBackend'
             login(request, new_user)
             return redirect('post_list')
-    
+
     else:
         form = Create_accountForm()
         return render(request, 'registration/create_account.html', {'form': form})
