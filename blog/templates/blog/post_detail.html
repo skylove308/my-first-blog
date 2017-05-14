@@ -9,7 +9,8 @@
         {% endif %}
         <a class="btn btn-default" onclick="check_author(event)" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-edit">수정 </span></a>
         <a class="btn btn-default" onclick="check_author2(event)" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove">삭제 </span></a>
-        <h1>{{ post.title }}</h1>
+        <h2 style="color : black">{{ post.title }}</h2>
+        <hr>
         <p>{{ post.text|linebreaksbr }}</p>
     </div>
     <hr>

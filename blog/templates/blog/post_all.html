@@ -8,11 +8,12 @@
                     {{ post.published_date }}
                 </div>
                 <div class="author">
-                    <a href="{% url 'post_user' pk=post.pk %}">{{ post.author }}</a></h1>
+                    <a href="{% url 'post_user' pk=post.pk%}">{{ post.author }}</a></h1>
                 </div>
             </div>
 
-            <h3><a style ="color : black" href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
+            <h3><a style="color:black" href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
+            <a href="{% url 'post_detail' pk=post.pk %}">댓글 {{ post.comments.count }}개가 달려있어요.</a>
         </div>
     {% endfor %}
 {%  endblock content %}

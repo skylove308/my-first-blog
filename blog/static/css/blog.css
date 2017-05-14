@@ -57,3 +57,13 @@ h1, h2, h3, h4 {
 .comment {
     margin: 20px 0px 20px 20px;
 }
+
+.recent-review {
+    border-bottom: 1px solid black;
+    border-color: grey;
+    margin-bottom: 15px;
+    padding: 0px;
+}
+.col-md.recent-review > h1, .recent-review > h3 {
+    padding: 0px;
+}

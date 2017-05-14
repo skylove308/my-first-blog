@@ -1,8 +1,13 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    <h1 style="color:mediumvioletred">Recent Review</h1>
-    <hr>
+
+    <div class="col-md-12 recent-review">
+        <h1 class="col-md-6" style="color:mediumvioletred; display: inline-block; padding: 0px">Recent Review</h1>
+        <h3 class="col-md-6"><a style="color : green; float : right" href="{% url 'post_all' %}">전체보기</a></h3>
+    </div>
+
+    <br>
     {% for post in posts %}
         <div class="post">
             <div style = "float : right">
