@@ -15,7 +15,7 @@
 }
 
 h1, h2, h3, h4 {
-    font-family: 'Baloo', cursive;
+    font-family: 'Baloo';
 }
 
 .date {
@@ -37,7 +37,9 @@ h1, h2, h3, h4 {
     font-size: 26pt;
     margin-right: 20px;
 }
-
+.col-md-8{
+    width : 100%;
+}
 .post {
     margin-bottom: 70px;
 }

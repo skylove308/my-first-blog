@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^account/new/$', views.create_account, name='create_account'),
     url(r'^post/user/(?P<pk>[0-9]+)/$', views.post_user, name='post_user'),
     url(r'^post/(?P<pk>\d+)/comment/$', views.add_comment_to_post, name='add_comment_to_post'),
-    url(r'^comment/(?P<pk>\d+)/approve/$', views.comment_approve, name='comment_approve'),
     url(r'^comment/(?P<pk>\d+)/remove/$', views.comment_remove, name='comment_remove'),
+    url(r'^comment/(?P<pk>[0-9]+)/edit/$', views.comment_edit, name='comment_edit'),
 
 ]

@@ -1,6 +1,8 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+    <h1 style="color:mediumvioletred">Recent Review</h1>
+    <hr>
     {% for post in posts %}
         <div class="post">
             <div style = "float : right">
@@ -12,9 +14,8 @@
                 </div>
             </div>
 
-            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-            <p>{{ post.text|linebreaksbr }}</p>
-            <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
+            <h3><a style="color:black" href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
+            <a href="{% url 'post_detail' pk=post.pk %}">댓글 {{ post.comments.count }}개가 달려있어요.</a>
         </div>
     {% endfor %}
 {%  endblock content %}
